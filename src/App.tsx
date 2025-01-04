@@ -3,14 +3,16 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import "./index.css";
 import Confetti from "./components/ui/confetti";
-import HeroVideoDialog from "./components/ui/hero-video-dialog";
 import { NeonGradientCard } from "./components/ui/neon-gradient-card";
 import Particles from "./components/ui/particles";
 import ScrollProgress from "./components/ui/scroll-progress";
-import TypingAnimation from "./components/ui/typing-animation";
+
 import WordPullUp from "./components/ui/word-pull-up";
 import { BentoGrid } from "./components/ui/bento-grid";
 import Marquee from "./components/ui/marquee";
+import Navbar from "./components/ui/navbar";
+import TypingAnimation from "./components/ui/typing-animation";
+
 
 
 
@@ -106,32 +108,46 @@ function App() {
 
   return (
     <div className="relative font-inter bg-black text-white min-h-screen">
+      <Navbar />
+      <Particles 
+        className="absolute inset-0 -z-10"
+        quantity={50}
+        staticity={50}
+        ease={50}
+      />
       {/* Scroll Progress */}
       <ScrollProgress />
 
       {/* Background Particles */}
-      <Particles />
+      
 
       {/* Hero Section */}
-      <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-r from-gray-900 via-black to-gray-900">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
-          <TypingAnimation text="Welcome to PrepWise!" speed={100} loop={true} />
-        </h1>
-        <p className="text-lg md:text-2xl text-gray-300 drop-shadow-md">
-          Your Ultimate Career Companion
-        </p>
-        <button
-          onClick={() => setShowDialog(true)}
-          className="mt-6 px-6 py-3 bg-white text-gray-800 font-semibold rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-transform"
-        >
-          Watch Intro
-        </button>
-        {showDialog && (
-          <HeroVideoDialog
-            videoUrl="https://your-video-url.com"
-            onClose={() => setShowDialog(false)}
-          />
-        )}
+      <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-gray-900 via-black to-gray-900">
+        <div className="text-center space-y-6 max-w-4xl px-4">
+          <h1 className="text-4xl md:text-7xl font-bold mb-4 drop-shadow-lg">
+            
+            <TypingAnimation>
+              Welcome to PrepWise
+            </TypingAnimation>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 drop-shadow-md max-w-2xl mx-auto">
+            Your Ultimate Career Companion for Interview Success and Professional Growth
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <button
+              onClick={handleConfetti}
+              className="px-8 py-4 bg-white text-gray-800 font-semibold rounded-full shadow-lg hover:scale-110 transition-transform"
+            >
+              Get Started
+            </button>
+            <a
+              href="#features"
+              className="px-8 py-4 border border-white/20 text-white font-semibold rounded-full shadow-lg hover:bg-white/10 transition-all"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Features Section */}
@@ -190,10 +206,10 @@ function App() {
             backgroundColor="#1a1a1a"
           >
             <h3 className="text-xl font-bold mb-2 text-white drop-shadow-md">
-              Resources Library
+              Resume Builder
             </h3>
             <p className="text-white/90">
-              Access a vast library of curated resources.
+              Build an ATS Friendly Resume.
             </p>
           </NeonGradientCard>
         </BentoGrid>
